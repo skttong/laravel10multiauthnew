@@ -13,119 +13,89 @@ class BookcategoryController extends Controller
         $this->middleware('auth');
     }
   
-    
-    	
-public function BookCategoryList(Request $request)
-{
-    $list = DB::table('bookcategories')->get();
-    return view('backend.bookcategory.list_bookcategory',compact('list'));
+        	
+    public function BookCategoryList(Request $request)
+    {
+        $list = DB::table('bookcategories')->get();
+        return view('backend.bookcategory.list_bookcategory',compact('list'));
+    }
 
+
+public function BookCategoryAdd()
+{
+$all = DB::table('bookcategories')->get();
+return view('backend.bookcategory.create_bookcategory',compact('all'));
 }
 
-
-    public function BookCategoryAdd()
-    {
-        $all = DB::table('bookcategories')->get();
-    	return view('backend.bookcategory.create_bookcategory',compact('all'));
-    }
-
     
 
-    public function PageCategoryInsert(Request $request)
+    public function BookCategoryInsert(Request $request)
     {
-    
-
-        $data = array();
-    $data['name'] = $request->name;
-    $data['details'] = $request->details;    
-    $data['pictures'] = $image_url;
-     
-        $insert = DB::table('pagecategories')->insert($data);
-        if ($insert) {
-                 $notification=array(
-                 'messege'=>'Successfully Page Category Inserted ',
-                 'alert-type'=>'success'
-                  );
-                return Redirect()->route('pagecategory.index')->with($notification);
-                 
-             }else{
-              $notification=array(
-                 'messege'=>'error ',
-                 'alert-type'=>'error'
-                  );
-                 return Redirect()->route('pagecategory.index')->with($notification);
-             }
-           
-
-  
-    }
-
-
- 
-
-
-
-      public function PageEditCategory($id)
-    {
-        $edit=DB::table('pagecategories')
-             ->where('id',$id)
-             ->first();
-        return view('backend.pagecategory.edit_pagecategory', compact('edit'));     
-    }
-
-        public function PageUpdateCategory(Request $request,$id)
-    {
-      
-        $sliders = DB::table('pagecategories')->where('id', $id)->first();
-
-        
-        $data = array();
-
+$data = array();
 $data['name'] = $request->name;
-$data['details'] = $request->details;
-
-	      
-
-        $update = DB::table('pagecategories')->where('id', $id)->update($data);
-
-        if ($update) 
+$data['slug'] = $request->slug;    
+$insert = DB::table('bookcategories')->insert($data);
+       
+if ($insert) 
 {
+   
+                return Redirect()->route('bookcategory.index')->with('success','Book Category created successfully!');
+                 
+        }
+else
+        {
         $notification=array
         (
-        'messege'=>'Successfully Page Category Updated ',
-        'alert-type'=>'success'
+        'messege'=>'error ',
+        'alert-type'=>'error'
         );
-return Redirect()->route('pagecategory.index')->with($notification);                      
+        return Redirect()->route('bookcategory.index')->with($notification);
+        }
+           
 }
-        else
+
+      public function BookEditCategory ($id)
     {
-            $notification=array
-            (
-            'messege'=>'error ',
-            'alert-type'=>'error'
-            );
-    return Redirect()->route('pagecategory.index')->with($notification);
+        $edit=DB::table('bookcategories')
+             ->where('id',$id)
+             ->first();
+        return view('backend.bookcategory.edit_bookcategory', compact('edit'));     
     }
 
+        public function BookUpdateCategory(Request $request,$id)
+    {
+      
+        DB::table('bookcategories')->where('id', $id)->first();        
+        $data = array();
+        $data['name'] = $request->name;
+        $data['slug'] = $request->slug;
+        $update = DB::table('bookcategories')->where('id', $id)->update($data);
 
-
+        if ($update) 
+    {
+            
+            return Redirect()->route('bookcategory.index')->with('success','Book Category Updated successfully!');                     
+    }
+        else
+    {
+        $notification=array
+        (
+        'messege'=>'error ',
+        'alert-type'=>'error'
+        );
+        return Redirect()->route('bookcategory.index')->with($notification);
+    }
      
     }
 
-
-public function PageDeleteCategory ($id)
+public function BookDeleteCategory ($id)
     {
     
-        $sliders = DB::table('pagecategories')->where('id', $id)->first();
-        if(file_exists($sliders->pictures))
-        {
-            unlink($sliders->pictures);
-        }
-        $delete = DB::table('pagecategories')->where('id', $id)->delete();
+        $delete = DB::table('bookcategories')->where('id', $id)->delete();
         if ($delete)
                             {
                             $notification=array(
-                            'messege'=>'Successfully Category Deleted ',
+                            'messege'=>'Successfully Book Category Deleted ',
                             'alert-type'=>'success'
                             );
                             return Redirect()->back()->with($notification);                      
