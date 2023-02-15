@@ -8,9 +8,14 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
-<link rel="stylesheet" href="{{('backend/plugins/fontawesome-free/css/all.min.css')}}">
+<link rel="stylesheet" href="{{asset('backend/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Theme style -->
-<link rel="stylesheet" href="{{('backend/dist/css/adminlte.min.css')}}">
+<link rel="stylesheet" href="{{asset('backend/dist/css/adminlte.min.css')}}">
+ <!-- DataTables -->
+ <link rel="stylesheet" href="{{asset('backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{asset('backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{asset('backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+  <!-- End Datatables -->
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -64,7 +69,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="{{('backend/dist/img/user1-128x128.jpg')}}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <img src="{{('backend/dist/img/user1-128x128.jpg')}}" alt="{{ Auth::user()->name }}" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -158,7 +163,7 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="{{('backend/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">Admin Panel</span>
     </a>
 
     <!-- Sidebar -->
@@ -169,7 +174,7 @@
           <img src="{{('backend/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -222,6 +227,18 @@
               </p>
             </a>
           </li>
+<li class="nav-item">
+<a class="dropdown-item" href="{{ route('logout') }}"
+onclick="event.preventDefault();
+document.getElementById('logout-form').submit();">
+<i class="nav-icon fas fa-th"></i> Logout
+</a>
+
+<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+@csrf
+</form>
+</li>
+         
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -284,11 +301,37 @@
 
 <!-- REQUIRED SCRIPTS -->
 
+<!-- Datatables -->
+
+<script>
+      $(function () {
+        $("#example1").DataTable({
+          "responsive": true,
+          "autoWidth": false,
+        });
+        $('#example2').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+          "responsive": true,
+        });
+      });
+    </script>
+    
+
+<script src="{{asset('backend/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+<script src="{{asset('backend/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
+<script src="{{asset('backend/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+<!-- End Datatables -->
+
 <!-- jQuery -->
-<script src="{{('backend/plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('backend/plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
-<script src="{{('backend/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('backend/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="{{('backend/dist/js/adminlte.min.js')}}"></script>
+<script src="{{asset('backend/dist/js/adminlte.min.js')}}"></script>
 </body>
 </html>
