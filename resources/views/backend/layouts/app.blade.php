@@ -11,11 +11,15 @@
 <link rel="stylesheet" href="{{asset('backend/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Theme style -->
 <link rel="stylesheet" href="{{asset('backend/dist/css/adminlte.min.css')}}">
- <!-- DataTables -->
- <link rel="stylesheet" href="{{asset('backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
-  <link rel="stylesheet" href="{{asset('backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
-  <link rel="stylesheet" href="{{asset('backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
-  <!-- End Datatables -->
+<!-- DataTables -->
+<link rel="stylesheet" href="{{asset('backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{asset('backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{asset('backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+<!-- End Datatables -->
+<!-- Toster and Sweet Alert -->
+<link rel="stylesheet" type="text/css" href="{{asset('backend/css/toastr.css')}}">
+
+<!-- End Toaster and Sweet Alert-->
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -320,12 +324,61 @@ document.getElementById('logout-form').submit();">
         });
       });
     </script>
-    
 
+<script src="{{asset('backend/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('backend/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('backend/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{asset('backend/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
 <script src="{{asset('backend/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{asset('backend/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
 <!-- End Datatables -->
+
+
+<script>
+        @if(Session::has('messege'))
+          var type="{{Session::get('alert-type','info')}}"
+          switch(type){
+              case 'info':
+                   toastr.info("{{ Session::get('messege') }}");
+                   break;
+              case 'success':
+                  toastr.success("{{ Session::get('messege') }}");
+                  break;
+              case 'warning':
+                 toastr.warning("{{ Session::get('messege') }}");
+                  break;
+              case 'error':
+                  toastr.error("{{ Session::get('messege') }}");
+                  break;
+          }
+        @endif
+     </script>
+
+     <script>
+         $(document).on("click", "#delete", function(e){
+             e.preventDefault();
+             var link = $(this).attr("href");
+                swal({
+                  title: "Are you Want to delete?",
+                  text: "Once Delete, This will be Permanently Delete!",
+                  icon: "warning",
+                  buttons: true,
+                  dangerMode: true,
+                })
+                .then((willDelete) => {
+                  if (willDelete) {
+                       window.location.href = link;
+                  } else {
+                    swal("Safe Data!");
+                  }
+                });
+            });
+    </script>
+
+<script src="{{ asset('backend/js/toastr.min.js')}}"></script>
+<script src="{{ asset('backend/js/sweetalert.min.js') }}"></script>
+
+<!-- End  Sweet Alert and Toaster notifications -->
 
 <!-- jQuery -->
 <script src="{{asset('backend/plugins/jquery/jquery.min.js')}}"></script>
