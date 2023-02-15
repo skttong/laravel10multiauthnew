@@ -23,10 +23,10 @@ public function BookCategoryList(Request $request)
 }
 
 
-    public function PageCategoryAdd()
+    public function BookCategoryAdd()
     {
-        $all = DB::table('pagecategories')->get();
-    	return view('backend.pagecategory.add_pagecategory',compact('all'));
+        $all = DB::table('bookcategories')->get();
+    	return view('backend.bookcategory.create_bookcategory',compact('all'));
     }
 
     

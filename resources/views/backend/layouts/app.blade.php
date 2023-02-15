@@ -212,9 +212,19 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-
+<!-- jQuery -->
+<script src="{{asset('backend/plugins/jquery/jquery.min.js')}}"></script>
+<!-- Bootstrap 4 -->
+<script src="{{asset('backend/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- AdminLTE App -->
+<script src="{{asset('backend/dist/js/adminlte.min.js')}}"></script>
 <!-- Datatables -->
-
+<script src="{{asset('backend/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('backend/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('backend/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('backend/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+<script src="{{asset('backend/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
+<script src="{{asset('backend/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
 <script>
       $(function () {
         $("#example1").DataTable({
@@ -233,12 +243,7 @@
       });
     </script>
 
-<script src="{{asset('backend/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('backend/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{asset('backend/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{asset('backend/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
-<script src="{{asset('backend/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
-<script src="{{asset('backend/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+
 <!-- End Datatables -->
 
 
@@ -288,11 +293,6 @@
 
 <!-- End  Sweet Alert and Toaster notifications -->
 
-<!-- jQuery -->
-<script src="{{asset('backend/plugins/jquery/jquery.min.js')}}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{asset('backend/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<!-- AdminLTE App -->
-<script src="{{asset('backend/dist/js/adminlte.min.js')}}"></script>
+
 </body>
 </html>

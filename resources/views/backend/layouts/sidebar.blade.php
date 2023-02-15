@@ -71,11 +71,22 @@
             <a href="{{URL::to('/list_bookcategory')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Book Category
+                List Book Category
                 <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{URL::to('/add_bookcategory')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Add Book Category
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+          
+
 <li class="nav-item">
 <a class="dropdown-item" href="{{ route('logout') }}"
 onclick="event.preventDefault();
