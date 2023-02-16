@@ -67,6 +67,9 @@
             </a>
           </li>
 
+
+@if (Auth::user()->role == 1 )
+
           <li class="nav-item">
             <a href="{{URL::to('/list_bookcategory')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -85,7 +88,62 @@
               </p>
             </a>
           </li>
+
+          <li class="nav-item">
+            <a href="{{URL::to('/user_list')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                User List
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+        
+@endif
+
+
+@if (Auth::user()->role == 2 )
+
+          <li class="nav-item">
+            <a href="{{URL::to('/list_bookcategory')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                List Book Category
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{URL::to('/add_bookcategory')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Add Book Category
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+
+     
+        
+@endif
+
+
+
+@if (Auth::user()->role == 3 )
+
+          <li class="nav-item">
+            <a href="{{URL::to('/list_bookcategory')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                List Book Category
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
           
+        
+@endif
+
 
 <li class="nav-item">
 <a class="dropdown-item" href="{{ route('logout') }}"
